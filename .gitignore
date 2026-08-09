@@ -1,0 +1,6 @@
+XJars/
+desktop.ini
+**/*.class
+**/bin/
+**/.classpath
+**/.project
