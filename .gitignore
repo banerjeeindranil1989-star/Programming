@@ -1,6 +1,7 @@
-XJars/
-desktop.ini
 **/*.class
 **/bin/
 **/.classpath
 **/.project
+*.class
+bin/
+out/
