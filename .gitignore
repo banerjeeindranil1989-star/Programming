@@ -1,7 +1,10 @@
-**/*.class
+﻿**/*.class
 **/bin/
 **/.classpath
 **/.project
 *.class
 bin/
 out/
+XJars/
+desktop.ini
+.vscode/

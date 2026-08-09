@@ -1,67 +1,113 @@
-public class SelectionSort
-{
-	
-	public String sortAlgoName()
-	{
-		return "Selection Sort";
-	}
-	
-	public void sort(int arr[])
-	{
-		int size = arr.length;
+/**
+ * Demonstrates the selection sort algorithm on an integer array.
+ * The implementation sorts the array in ascending order in place.
+ */
+public class SelectionSort {
 
-		//loop in through the complete array
-		for (int loop = 0; loop < size-1; loop++)
-		{
-			// Find the minimum element in unsorted array
-			int min_element = loop;
-			for (int i = loop+1; i < size; i++)
-				if (arr[i] < arr[min_element])
-					min_element = i;
+    /**
+     * Returns the name of the sorting algorithm.
+     *
+     * @return name of the algorithm
+     */
+    public String sortAlgoName() {
+        return "Selection Sort";
+    }
 
-			// Swap the found minimum element with the first element
-			int temp = arr[min_element];
-			arr[min_element] = arr[loop];
-			arr[loop] = temp;
-			
-			printIntermediateArray(loop, arr);
-		}
-	}
+    /**
+     * Sorts the given integer array in ascending order using selection sort.
+     *
+     * @param values the array to sort; must not be null
+     * @throws IllegalArgumentException if the input array is null
+     */
+    public void sort(int[] values) {
+        if (values == null) {
+            throw new IllegalArgumentException("Input array cannot be null.");
+        }
 
-	public void printInitialArray(int arr[])
-	{
-		System.out.print("Initial Array: [ ");
-		int n = arr.length;
-		for (int i=0; i<n; ++i)
-			System.out.print(arr[i]+" ");
-		System.out.println("]");
-	}
-	
-	public void printIntermediateArray(int counter, int arr[])
-	{
-		int n = arr.length;
-		System.out.print("Step - " + (counter+1) + " --> " );
-		for (int i=0; i<n; ++i)
-			System.out.print(arr[i]+" ");
-		System.out.println();
-	}
-	public void printFinalArray(int arr[])
-	{
-		System.out.print("\nFinal Array: [ ");
-		int n = arr.length;
-		for (int i=0; i<n; ++i)
-			System.out.print(arr[i]+" ");
-		System.out.println("]");
-	}
+        int size = values.length;
 
-	public static void main( String[] args)
-	{
-		SelectionSort ob = new SelectionSort();
-		int arr[] = {64,25,12,22,11};
-		ob.printInitialArray(arr);
-		System.out.println("\nSorting using: " + ob.sortAlgoName());
-		ob.sort(arr);
-		ob.printFinalArray(arr);
-	}
+        for (int currentIndex = 0; currentIndex < size - 1; currentIndex++) {
+            int minIndex = currentIndex;
+
+            for (int searchIndex = currentIndex + 1; searchIndex < size; searchIndex++) {
+                if (values[searchIndex] < values[minIndex]) {
+                    minIndex = searchIndex;
+                }
+            }
+
+            if (minIndex != currentIndex) {
+                int temp = values[currentIndex];
+                values[currentIndex] = values[minIndex];
+                values[minIndex] = temp;
+            }
+
+            printIntermediateArray(currentIndex, values);
+        }
+    }
+
+    /**
+     * Prints the initial array before sorting begins.
+     *
+     * @param values the array to display
+     */
+    public void printInitialArray(int[] values) {
+        System.out.print("Initial Array: ");
+        printArrayValues(values);
+        System.out.println();
+    }
+
+    /**
+     * Prints the current state of the array during the sort.
+     *
+     * @param counter the current pass number
+     * @param values the array to display
+     */
+    public void printIntermediateArray(int counter, int[] values) {
+        System.out.print("Step - " + (counter + 1) + " --> ");
+        printArrayValues(values);
+        System.out.println();
+    }
+
+    /**
+     * Prints the final sorted array.
+     *
+     * @param values the array to display
+     */
+    public void printFinalArray(int[] values) {
+        System.out.print("\nFinal Array: ");
+        printArrayValues(values);
+        System.out.println();
+    }
+
+    /**
+     * Prints the contents of the array in a readable format.
+     *
+     * @param values the array to display
+     */
+    private void printArrayValues(int[] values) {
+        System.out.print("[ ");
+        for (int index = 0; index < values.length; index++) {
+            if (index > 0) {
+                System.out.print(" ");
+            }
+            System.out.print(values[index]);
+        }
+        System.out.print(" ]");
+    }
+
+    /**
+     * Runs a small demonstration of the selection sort algorithm.
+     *
+     * @param args command-line arguments (unused)
+     */
+    public static void main(String[] args) {
+        SelectionSort sortDemo = new SelectionSort();
+        int[] values = {64, 25, 12, 22, 11};
+
+        sortDemo.printInitialArray(values);
+        System.out.println("\nSorting using: " + sortDemo.sortAlgoName());
+        sortDemo.sort(values);
+        sortDemo.printFinalArray(values);
+    }
 }
 
